@@ -1,7 +1,6 @@
 import numpy as np
 import wave
 import matplotlib.pyplot as plt
-import time
 
 MS_TO_S = 1000
 EPSILON = 1e-4
@@ -15,7 +14,7 @@ def DF(time_series, window, lag):
 def num_samples(time, sample_rate=44100):
     return int(sample_rate * (time / MS_TO_S))
 
-def find_pitch(time_series, sample_rate=44100, window_time=25, thresh=0.1, max_lag_time=25, bad_input_thresh=0.3):
+def find_pitch(time_series, sample_rate=44100, window_time=30, max_lag_time=50, thresh=0.1, bad_input_thresh=0.15):
     # set window width and maximum lag to test
     window = num_samples(window_time, sample_rate)
     max_lag = min(num_samples(max_lag_time, sample_rate), len(time_series) - window)
